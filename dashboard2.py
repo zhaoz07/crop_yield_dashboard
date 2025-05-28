@@ -19,23 +19,25 @@ st.set_page_config(page_title="Crop Yield Dashboard", layout="wide")
 
 import gdown
 import os
-import pandas as pd
-import streamlit as st
 
 
 #@st.cache_data
 #def load_data():
 #   return pd.read_csv("crop_yield_sample.csv")
 
+
 @st.cache_data
 def load_data():
-    url = "https://huggingface.co/datasets/sydniezhao/crop_yield/resolve/main/crop_yield.csv"
-    return pd.read_csv(url)
+    url = 'https://drive.google.com/uc?id=10j6dyBOugXbPSW_NugJQwRLeAH-HsE09'
+    output = 'crop_yield.csv'
+    gdown.download(url, output, quiet=False, use_cookies=False)
+    return pd.read_csv(output)
 
 
 def load_model():
     with open("xgboost_model.pkl", "rb") as f:
         return pickle.load(f)
+
 
 df = load_data()
 model = load_model()
