@@ -22,16 +22,10 @@ import os
 import pandas as pd
 import streamlit as st
 
+
 @st.cache_data
 def load_data():
-    url = "https://huggingface.co/datasets/sydniezhao/crop_yield/resolve/main/crop_yield.csv"
-    return pd.read_csv(url)
-
-
-
-# @st.cache_data
-# def load_data():
-#     return pd.read_csv("crop_yield.csv")
+   return pd.read_csv("crop_yield_sample.csv")
 
 def load_model():
     with open("xgboost_model.pkl", "rb") as f:
