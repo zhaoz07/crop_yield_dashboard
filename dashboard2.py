@@ -23,8 +23,9 @@ import gdown
 def load_data():
     url = 'https://drive.google.com/uc?id=10j6dyBOugXbPSW_NugJQwRLeAH-HsE09'
     output = 'crop_yield.csv'
-    gdown.download(url, output, quiet=False)
+    gdown.download(url, output, quiet=False, use_cookies=False)
     return pd.read_csv(output)
+
 
 
 # @st.cache_data
