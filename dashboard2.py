@@ -24,25 +24,8 @@ import streamlit as st
 
 @st.cache_data
 def load_data():
-    url = 'https://drive.google.com/uc?id=10j6dyBOugXbPSW_NugJQwRLeAH-HsE09'
-    output = 'crop_yield.csv'
-
-    # 下载文件
-    try:
-        result = gdown.download(url, output, quiet=False, use_cookies=False)
-        if result is None or not os.path.exists(output):
-            raise RuntimeError("❌ Dataset download failed. Please check Google Drive sharing permissions.")
-    except Exception as e:
-        st.error(f"Error downloading dataset: {e}")
-        st.stop()
-
-    # 尝试读取 CSV 文件
-    try:
-        df = pd.read_csv(output)
-        return df
-    except Exception as e:
-        st.error(f"Error reading downloaded CSV: {e}")
-        st.stop()
+    url = "https://huggingface.co/datasets/sydniezhao/crop_yield/resolve/main/crop_yield.csv"
+    return pd.read_csv(url)
 
 
 
